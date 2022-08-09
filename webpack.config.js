@@ -42,7 +42,7 @@ module.exports = env => ({
     hot: true,
     port: 8080,
     proxy: {
-        '/api': 'http://localhost:3000'
+        '/logs': 'http://localhost:3000'
     }
   },
   plugins: [

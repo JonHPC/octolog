@@ -1,4 +1,4 @@
-//client/components/Navbar.js
+//client/components/Navbar.jsx
 import React, {useState} from 'react';
 
 function Navbar(props) {

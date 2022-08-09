@@ -1,7 +1,7 @@
-//client/components/App.js
+//client/components/App.jsx
 import React, {Component} from 'react';
-import Navbar from './Navbar.js';
-import LogContainer from './LogContainer.js';
+import Navbar from './Navbar.jsx';
+import LogContainer from './LogContainer.jsx';
 
 class App extends Component {
     constructor(props) {
