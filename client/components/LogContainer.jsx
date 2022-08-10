@@ -74,7 +74,7 @@ class LogContainer extends Component {
                     avgDepth={logs[i].avg_depth}
                     timeIn={logs[i].time_in}
                     timeOut={logs[i].time_out}
-                    temp={logs[i].temp}
+                    temperature={logs[i].temperature}
                     tankStart={logs[i].tank_start}
                     tankEnd={logs[i].tank_end}
                     buddies={logs[i].buddies}

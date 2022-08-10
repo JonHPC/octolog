@@ -33,5 +33,88 @@ body{
 }
 
 .log-container{
-
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:center;
+    gap:0.5rem;
 }
+
+.log{
+    background-color:$slate-800;
+    border-radius:1.5rem;
+    padding:1rem;
+    max-width:60vw;
+    .log-data{
+        color:$slate-400;
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        .log-edit-delete{
+            display:flex;
+            justify-items:space-evenly;
+            align-items:center;
+            gap:0.5rem;
+            #log-delete-btn{
+                background-color:$slate-700;
+                color:$slate-500;
+                border-radius:0.5rem;
+                padding:0.5rem;
+                &:hover{
+                    background-color:$slate-600;
+                }
+            }
+            #log-edit-btn{
+                background-color:$slate-500;
+                color:$slate-300;
+                border-radius:0.5rem;
+                padding:0.5rem;
+                &:hover{
+                    background-color:$slate-400;
+                }
+            }
+        }
+    }
+}
+
+.add-log{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+}
+
+.form{
+    background-color:$slate-800;
+    color:$slate-400;
+    border-radius:1.5rem;
+    padding:3rem;
+    input, textarea{
+        background-color:$slate-300;
+        color:$slate-700;
+        border:none;
+        border-radius:0.25rem;
+        padding:0.25rem;
+    }
+    .submit-btn{
+        border:none;
+        background-color:$slate-300;
+        color:$slate-700;
+        &:hover{
+            background-color:$slate-400;
+        }
+    }
+}
+
+/* Chrome, Safari, Edge, Opera remove arrows from number input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+

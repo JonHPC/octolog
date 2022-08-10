@@ -11,26 +11,95 @@ function Log(props) {
     const [avgDepth, setAvgDepth] = useState(props.avgDepth);
     const [timeIn, setTimeIn] = useState(props.timeIn);
     const [timeOut, setTimeOut] = useState(props.timeOut);
-    const [temp, setTemp] = useState(props.temp);
+    const [temperature, setTemperature] = useState(props.temperature);
     const [tankStart, setTankStart] = useState(props.tankStart);
     const [tankEnd, setTankEnd] = useState(props.tankEnd);
+    const [tankSize, setTankSize] = useState(11.1);
     const [buddies, setBuddies] = useState(props.buddies);
     const [diveComments, setDiveComments] = useState(props.diveComments);
 
+    //convert the createdOn prop to a new Date object
+    const date = new Date(createdOn)
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    //if the month is less than 10, add a 0 in front
+    if(date.getMonth() < 10){
+      month = `0${parseInt(date.getMonth())+1}`
+    }
+
+    //declare a new const to hold the processed date
+    const processedDate = `${year}-${month}-${day}`
+
+    //calculate dive time
+    const floatTimeIn = timeStringToFloat(timeIn);
+    const floatTimeOut = timeStringToFloat(timeOut);
+    const diveFloatTime = floatTimeIn - floatTimeOut;
+    const diveTime = convertNumToTime(diveFloatTime);
+
+    //function to convert time to float
+    function timeStringToFloat(time){
+      let hoursMinutes = time.split(/[.:]/);
+      let hours = parseInt(hoursMinutes[0], 10);
+      let minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+      return (hours + minutes / 60).toFixed(2);
+    }
+
+    //function to convert float time back to float
+    function convertNumToTime(number) {
+      // Check sign of given number
+      var sign = (number >= 0) ? 1 : -1;
+      // Set positive value of number of sign negative
+      number = number * sign;
+      // Separate the int from the decimal part
+      var hour = Math.floor(number);
+      var decpart = number - hour;
+      var min = 1 / 60;
+      // Round to nearest minute
+      decpart = min * Math.round(decpart / min);
+      var minute = Math.floor(decpart * 60) + '';
+      // Add padding if need
+      if (minute.length < 2) {
+      minute = '0' + minute; 
+      }
+      // Add Sign in final result
+      sign = sign == 1 ? '' : '0';
+      // Concate hours and minutes
+      let time = sign + hour + ':' + minute;
+      return time;
+  }
+
+    //calculate air used
+    const airUsed = (tankStart - tankEnd) * tankSize;
+    const diveTimeMinutes = (-1 * diveFloatTime) * 60
+    const litersPerMin = (airUsed / diveTimeMinutes / ((maxDepth/10)+1)).toFixed(1);
+
     return(
         <div className="log">
-            <h3>Log#{log} - {title} - {createdOn}</h3>
-            <p>Created By user_id: {createdBy}</p>
-            <p>Dive Site: {diveSite}</p>
-            <p>Max Depth: {maxDepth} m</p>
-            <p>Avg Depth: {avgDepth} m</p>
-            <p>Time In: {timeIn}</p>
-            <p>Time Out: {timeOut}</p>
-            <p>Temp: {temp} °C</p>
-            <p>Tank Start: {tankStart} bar</p>
-            <p>Tank End: {tankEnd} bar</p>
-            <p>Buddies: {buddies}</p>
-            <p>Dive Comments: {diveComments}</p>
+          <div className="log-header">
+            <h3>Log#{log} - {title} - {processedDate}</h3>
+          </div>
+          <div className="log-data">
+            <span>Created By user_id: {createdBy}</span>
+            <span>Dive Site: {diveSite}</span>
+            <span>Max Depth: {maxDepth} m</span>
+            <span>Avg Depth: {avgDepth} m</span>
+            <span>Time In: {timeIn}</span>
+            <span>Time Out: {timeOut}</span>
+            <span>Dive Time: {diveTime}</span>
+            <span>Temp: {temperature} °C</span>
+            <span>Tank Start: {tankStart} bar</span>
+            <span>Tank End: {tankEnd} bar</span>
+            <span>Air Used: {litersPerMin} Lt/min</span>
+            
+            <span>Buddies: {buddies}</span>
+            <span>Dive Comments: {diveComments}</span>
+            <div className="log-edit-delete">
+              <span id="log-delete-btn">Delete</span>
+              <span id="log-edit-btn">Edit</span>
+            </div>
+          </div>
         </div>
     )
 }
