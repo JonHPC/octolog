@@ -47,7 +47,7 @@ logController.getLogs = (req, res, next) => {
 
 logController.addLog = (req, res, next) => {
   //this middleware adds a log to the database
-  console.log('logController.addLog req.body: ', req.body);
+  //console.log('logController.addLog req.body: ', req.body);
   const {
     log,
     title,
@@ -139,7 +139,7 @@ logController.addLog = (req, res, next) => {
 
 logController.updateLog = (req, res, next) => {
   //this middleware updates a log
-  console.log('logController.updateLog req.body: ', req.body);
+  //console.log('logController.updateLog req.body: ', req.body);
   const {
     log,
     title,
