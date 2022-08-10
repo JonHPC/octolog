@@ -31,8 +31,8 @@ const AddLog = (props) => {
     const saveLog = (e) => {
         console.log('saveLog log: ', log)
         e.preventDefault()
-        if(title === '' || log === ''){
-            alert('A log number and title are required!')
+        if(title === '' || log === '' || !createdOn || !timeIn || !timeOut){
+            alert('A please fill out the required fields!')
         }else{
             
             const logObj = {
@@ -73,24 +73,24 @@ const AddLog = (props) => {
         <div className="add-log">
             <h1>Add Log</h1>
             <form className="form" onSubmit={saveLog}>
-                <label htmlFor="log">Log#</label><br></br>
-                <input type="number" id="log" name="log" placeholder="99" onChange={setLog}/><br></br>
-                <label htmlFor="title">Title</label><br></br>
-                <input type="text" id="title" name="title" placeholder="Catalina Island" onChange={setTitle}/><br></br>
-                <label htmlFor="createdOn">Created On</label><br></br>
-                <input type="date" id="createdOn" name="createdOn" onChange={setCreatedOn}/><br></br>
+                <label htmlFor="log">Log#*</label><br></br>
+                <input type="number" id="log" name="log" placeholder="99" onChange={setLog} required/><br></br>
+                <label htmlFor="title">Title*</label><br></br>
+                <input type="text" id="title" name="title" placeholder="Catalina Island" onChange={setTitle} required/><br></br>
+                <label htmlFor="createdOn">Created On*</label><br></br>
+                <input type="date" id="createdOn" name="createdOn" onChange={setCreatedOn} required/><br></br>
+                <label htmlFor="timeIn">Time In*</label><br></br>
+                <input type="time" id="timeIn" name="timeIn" onChange={setTimeIn} required/><br></br>
+                <label htmlFor="timeOut">Time Out*</label><br></br>
                 <label htmlFor="diveSite">Dive Site</label><br></br>
                 <input type="text" id="diveSite" name="diveSite" placeholder="Casino Point" onChange={setDiveSite}/><br></br>
                 <label htmlFor="maxDepth">Max Depth (m)</label><br></br>
-                <input type="number" id="maxDepth" name="maxDepth" placeholder="15.0" onChange={setMaxDepth}/><br></br>
+                <input type="number" id="maxDepth" name="maxDepth" placeholder="15.0" onChange={setMaxDepth} step="0.01"/><br></br>
                 <label htmlFor="avgDepth">Average Depth (m)</label><br></br>
-                <input type="number" id="avgDepth" name="avgDepth" placeholder="10.5" onChange={setAvgDepth}/><br></br>
-                <label htmlFor="timeIn">Time In</label><br></br>
-                <input type="time" id="timeIn" name="timeIn" onChange={setTimeIn}/><br></br>
-                <label htmlFor="timeOut">Time Out</label><br></br>
-                <input type="time" id="timeOut" name="timeOut" onChange={setTimeOut}/><br></br>
+                <input type="number" id="avgDepth" name="avgDepth" placeholder="10.5" onChange={setAvgDepth} step="0.01"/><br></br>
+                <input type="time" id="timeOut" name="timeOut" onChange={setTimeOut} required/><br></br>
                 <label htmlFor="temperature">Temperature (°C)</label><br></br>
-                <input type="number" id="temperature" name="temperature" placeholder="19.0" onChange={setTemperature}/><br></br>
+                <input type="number" id="temperature" name="temperature" placeholder="19.0" onChange={setTemperature} step="0.1"/><br></br>
                 <label htmlFor="tankStart">Tank Start (bar)</label><br></br>
                 <input type="number" id="tankStart" name="tankStart" placeholder="200" onChange={setTankStart}/><br></br>
                 <label htmlFor="tankEnd">Tank End (bar)</label><br></br>

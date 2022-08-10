@@ -81,7 +81,7 @@ class LogContainer extends Component {
                     diveComments={logs[i].dive_comments}
                 />
             )
-            }
+        }
 
         return(
             <div className='log-container'>

@@ -81,23 +81,23 @@ function Log(props) {
             <h3>Log#{log} - {title} - {processedDate}</h3>
           </div>
           <div className="log-data">
-            <span>Created By user_id: {createdBy}</span>
-            <span>Dive Site: {diveSite}</span>
-            <span>Max Depth: {maxDepth} m</span>
-            <span>Avg Depth: {avgDepth} m</span>
-            <span>Time In: {timeIn}</span>
-            <span>Time Out: {timeOut}</span>
-            <span>Dive Time: {diveTime}</span>
-            <span>Temp: {temperature} °C</span>
-            <span>Tank Start: {tankStart} bar</span>
-            <span>Tank End: {tankEnd} bar</span>
-            <span>Air Used: {litersPerMin} Lt/min</span>
-            <span>Buddies: {buddies}</span>
-            <div className="log-edit-delete">
+            <span id="createdBy-span">Created By user_id: <span>{createdBy}</span></span>
+            <span id="timeIn-span">Time In: <span>{timeIn}</span></span>
+            <span id="timeOut-span">Time Out: <span>{timeOut}</span></span>
+            <span id="diveTime-span">Dive Time: <span>{diveTime}</span></span>
+            <span id="diveSite-span">Dive Site: <span>{diveSite}</span></span>
+            <span id="maxDepth-span">Max Depth: <span>{maxDepth}</span> m</span>
+            <span id="avgDepth-span">Avg Depth: <span>{avgDepth}</span> m</span>
+            <span id="temp-span">Temp: <span>{temperature}</span> °C</span>
+            <span id="tankStart-span">Tank Start: <span>{tankStart}</span> bar</span>
+            <span id="tankEnd-span">Tank End: <span>{tankEnd}</span> bar</span>
+            <span id="airUsed-span">Air Used: <span>{litersPerMin}</span> Lt/min</span>
+            <span id="buddies-span">Buddies: <span>{buddies}</span></span>
+            <div className="log-edit-delete" id="logBtns-span">
               <span id="log-delete-btn">Delete</span>
               <span id="log-edit-btn">Edit</span>
             </div>
-            <span>Dive Comments: {diveComments}</span>
+            <span id="diveComments-span">Dive Comments: <span>{diveComments}</span></span>
           </div>
         </div>
     )
