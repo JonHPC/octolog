@@ -1,22 +1,18 @@
 //client/components/App.jsx
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import LogContainer from './LogContainer.jsx';
+import '../scss/style.scss';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render(props) {
-
-        return(
-            <div className="app">
-                <Navbar />
-                <LogContainer />
-            </div>
-        )
-    }
+function App() {
+  return (
+    <main>
+      <Navbar />
+      <Outlet />
+      <LogContainer />
+    </main>
+  );
 }
 
 export default App;

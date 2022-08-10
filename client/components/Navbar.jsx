@@ -1,14 +1,14 @@
 //client/components/Navbar.jsx
-import React, {useState} from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-function Navbar(props) {
-
+function Navbar() {
 
     return(
         <div className="navbar">
-            <h1>Octolog</h1>
+            <Link to='/'>Octolog</Link>
             <ul>
-                <li>Log</li>
+                <Link to='/addlog'>Add Log</Link>
                 <li>Stats</li>
                 <li>Map</li>
             </ul>

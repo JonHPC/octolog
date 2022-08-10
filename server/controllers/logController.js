@@ -23,11 +23,12 @@ logController.getLogs = (req, res, next) => {
 
   db.query(queryText)
     .then((data) => {
-      console.log('getLogs data: ', data.rows);
+      //console.log('getLogs data: ', data.rows);
       res.locals.logs = data.rows;
       next();
     })
     .catch((err, chars) => {
+      res.status(400);
       return next(
         createErr({
           method: 'getLogs',
@@ -52,6 +53,8 @@ logController.updateLog = (req, res, next) => {
 
 logController.deleteLog = (req, res, next) => {
   //this middleware deletes a log
+  console.log('logController.deleteLog');
+  next();
 };
 
 module.exports = logController;
