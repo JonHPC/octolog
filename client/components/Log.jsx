@@ -134,7 +134,10 @@ function Log(props) {
           >
             Delete
           </span>
-          <span className="log-edit-btn">Edit</span>
+          <span 
+            id={log} 
+            className="log-edit-btn"
+            onClick={props.updateLog}>Edit</span>
         </div>
         <span id="diveComments-span">
           Dive Comments: <span>{diveComments}</span>

@@ -16,8 +16,7 @@ router.patch('/:id', logController.updateLog, (req, res) => {
 });
 
 router.delete('/:id', logController.deleteLog, (req, res) => {
-    //console.log('db.js DELETE req', req)
-    res.status(200);
+    res.status(200).json(res.locals.logs);
 })
 
 module.exports = router;

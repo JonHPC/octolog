@@ -11,6 +11,7 @@ class LogContainer extends Component {
       refresher: false
     };
     this.deleteLog = this.deleteLog.bind(this)
+    this.updateLog = this.updateLog.bind(this)
   }
 
   //fetch data once this component mounts
@@ -38,17 +39,33 @@ class LogContainer extends Component {
     console.log('deleteLog e.target.id: ',e.target.id);
     e.preventDefault();
     fetch(`/logs/${e.target.id}`, { method: 'DELETE' })
-      .then((logs) => {
-        console.log('LogContainer.jsx deleteLog res: ', res);
-        this.setState({logs})
-        res.json();
+        //after DELETING, GET updated data
+      .then(() => {
+        fetch('/logs')
+            .then((res) => res.json())
+            .then((logs) => {
+            //console.log('LogContainer.jsx logs: ', logs);
+            if (!Array.isArray(logs)) {
+            logs = [];
+            }
+            return this.setState({
+            logs,
+            fetchedLogs: true,
+            });
       })
-      .then((data)=>{
-        console.log('setState after deleting')
+      .catch((err) =>
+        console.log('LogContainer.componentDidMount: get log: ERROR: ', err)
+      );
       })
       .catch((err) => {
         console.log('LogContainer.jsx DELETE ERROR: ', err);
       });
+  }
+
+  //edit the log based on which log edit btn is clicked
+  updateLog(e){
+    console.log('updateLog e.target.id: ', e.target.id)
+    e.preventDefault();
   }
 
   render() {
@@ -98,6 +115,7 @@ class LogContainer extends Component {
           buddies={logs[i].buddies}
           diveComments={logs[i].dive_comments}
           deleteLog={this.deleteLog}
+          updateLog={this.updateLog}
         />
       );
     }
