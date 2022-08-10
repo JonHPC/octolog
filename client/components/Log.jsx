@@ -1,5 +1,5 @@
 //client/components/Log.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 
 function Log(props) {
   const [log, setLog] = useState(props.log);
@@ -79,22 +79,8 @@ function Log(props) {
     (maxDepth / 10 + 1)
   ).toFixed(1);
 
-  //extract the log id based on which log delete btn is clicked
-  function deleteLog(e) {
-    console.log(e.target.id);
-    e.preventDefault();
-    //store the target id into an object
-    const idToDelete = { id: e.target.id };
-    console.log('idToDelete: ', idToDelete);
-    fetch(`/logs/${e.target.id}`, { method: 'DELETE' })
-      .then((res) => {
-        console.log('Log.jsx deleteLog res: ', res);
-        return res.json();
-      })
-      .catch((err) => {
-        console.log('Log.jsx DELETE ERROR: ', err);
-      });
-  }
+
+
 
   return (
     <div className="log">
@@ -105,7 +91,7 @@ function Log(props) {
       </div>
       <div className="log-data">
         <span id="createdBy-span">
-          Created By user_id: <span>{createdBy}</span>
+          Created By: <span>{createdBy}</span>
         </span>
         <span id="timeIn-span">
           Time In: <span>{timeIn}</span>
@@ -144,7 +130,7 @@ function Log(props) {
           <span
             id={log}
             className="log-delete-btn"
-            onClick={() => deleteLog(event)}
+            onClick={props.deleteLog}
           >
             Delete
           </span>

@@ -19,8 +19,14 @@ const logController = {};
 logController.getLogs = (req, res, next) => {
   //this middleware gets and returns all of the logs in the database
   console.log('logController.getLogs');
-  const queryText = `SELECT * FROM logs ORDER BY log_id DESC;`;
-
+  //const queryText = `SELECT * FROM logs ORDER BY log_id DESC;`;
+  const queryText = `
+  SELECT logs.*, acc.username AS "created_by"
+  FROM logs
+  LEFT JOIN accounts acc 
+  ON acc.user_id = logs.user_id
+  ORDER BY logs.log_id DESC
+  ;`;
   db.query(queryText)
     .then((data) => {
       //console.log('getLogs data: ', data.rows);
@@ -76,7 +82,7 @@ logController.addLog = (req, res, next) => {
     diveComments,
   ];
 
-  console.log('logController.addLog values: ', values)
+  console.log('logController.addLog values: ', values);
 
   const queryText = `
   INSERT INTO logs (
@@ -115,20 +121,20 @@ logController.addLog = (req, res, next) => {
   ;`;
 
   db.query(queryText, values)
-  .then((data) => {
-    //console.log('addLog data: ', data);
-    next();
-  })
-  .catch((err, chars) => {
-    res.status(400);
-    return next(
-      createErr({
-        method: 'addLog',
-        type: 'adding data',
-        err,
-      })
-    );
-  });
+    .then((data) => {
+      //console.log('addLog data: ', data);
+      next();
+    })
+    .catch((err, chars) => {
+      res.status(400);
+      return next(
+        createErr({
+          method: 'addLog',
+          type: 'adding data',
+          err,
+        })
+      );
+    });
 };
 
 logController.updateLog = (req, res, next) => {
@@ -149,7 +155,7 @@ logController.deleteLog = (req, res, next) => {
   ;`;
   db.query(queryText, values)
     .then((data) => {
-      next()
+      next();
     })
     .catch((err, chars) => {
       res.status(400);
