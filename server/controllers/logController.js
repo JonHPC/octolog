@@ -139,8 +139,28 @@ logController.updateLog = (req, res, next) => {
 
 logController.deleteLog = (req, res, next) => {
   //this middleware deletes a log
-  console.log('logController.deleteLog');
-  next();
+  console.log('logController.deleteLog req.params.id: ', req.params.id);
+  const id = req.params.id;
+  const values = [id];
+  const queryText = `
+  DELETE FROM logs
+  WHERE log_id = $1
+  RETURNING *
+  ;`;
+  db.query(queryText, values)
+    .then((data) => {
+      next()
+    })
+    .catch((err, chars) => {
+      res.status(400);
+      return next(
+        createErr({
+          method: 'deleteLog',
+          type: 'deleting data',
+          err,
+        })
+      );
+    });
 };
 
 module.exports = logController;

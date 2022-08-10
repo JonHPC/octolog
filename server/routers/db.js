@@ -11,11 +11,12 @@ router.post('/', logController.addLog, (req, res) => {
     res.status(200);
 });
 
-router.patch('/', logController.updateLog, (req, res) => {
+router.patch('/:id', logController.updateLog, (req, res) => {
     res.status(200);
 });
 
-router.delete('/', logController.deleteLog, (req, res) => {
+router.delete('/:id', logController.deleteLog, (req, res) => {
+    //console.log('db.js DELETE req', req)
     res.status(200);
 })
 

@@ -1,6 +1,6 @@
 //client/components/AddLog.jsx
 import React, {useState, useEffect} from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {Link, withRouter, useNavigate} from 'react-router-dom';
 
 //custom hook for handling inputs
 const useInput = init => {
@@ -28,13 +28,16 @@ const AddLog = (props) => {
     const [buddies, setBuddies] = useInput('');
     const [diveComments, setDiveComments] = useInput('');
 
+    //redirect forms upon submit
+    const navigate = useNavigate();
+
+    //saves the log when submit button pressed
     const saveLog = (e) => {
         console.log('saveLog log: ', log)
         e.preventDefault()
         if(title === '' || log === '' || !createdOn || !timeIn || !timeOut){
             alert('A please fill out the required fields!')
         }else{
-            
             const logObj = {
                 log,
                 title,
@@ -63,11 +66,15 @@ const AddLog = (props) => {
                 console.log('AddLog.jsx POST data: ', data)
                 alert('Log added!')
             })
+            .then(()=>{
+                navigate('/', {replace:true})
+            })
             .catch(err =>{
                 console.log('AddLog.jsx POST ERROR: ', err)
             })
         }
     }
+
 
     return(
         <div className="add-log">
@@ -82,13 +89,13 @@ const AddLog = (props) => {
                 <label htmlFor="timeIn">Time In*</label><br></br>
                 <input type="time" id="timeIn" name="timeIn" onChange={setTimeIn} required/><br></br>
                 <label htmlFor="timeOut">Time Out*</label><br></br>
+                <input type="time" id="timeOut" name="timeOut" onChange={setTimeOut} required/><br></br>
                 <label htmlFor="diveSite">Dive Site</label><br></br>
                 <input type="text" id="diveSite" name="diveSite" placeholder="Casino Point" onChange={setDiveSite}/><br></br>
                 <label htmlFor="maxDepth">Max Depth (m)</label><br></br>
                 <input type="number" id="maxDepth" name="maxDepth" placeholder="15.0" onChange={setMaxDepth} step="0.01"/><br></br>
                 <label htmlFor="avgDepth">Average Depth (m)</label><br></br>
                 <input type="number" id="avgDepth" name="avgDepth" placeholder="10.5" onChange={setAvgDepth} step="0.01"/><br></br>
-                <input type="time" id="timeOut" name="timeOut" onChange={setTimeOut} required/><br></br>
                 <label htmlFor="temperature">Temperature (°C)</label><br></br>
                 <input type="number" id="temperature" name="temperature" placeholder="19.0" onChange={setTemperature} step="0.1"/><br></br>
                 <label htmlFor="tankStart">Tank Start (bar)</label><br></br>

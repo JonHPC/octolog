@@ -146,7 +146,7 @@ body{
             justify-items:space-evenly;
             align-items:center;
             gap:0.5rem;
-            #log-delete-btn{
+            .log-delete-btn{
                 background-color:$slate-700;
                 color:$slate-500;
                 border-radius:0.5rem;
@@ -155,7 +155,7 @@ body{
                     background-color:$slate-600;
                 }
             }
-            #log-edit-btn{
+            .log-edit-btn{
                 background-color:$slate-500;
                 color:$slate-300;
                 border-radius:0.5rem;

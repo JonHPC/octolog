@@ -12,7 +12,7 @@ root.render(
     <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<App />}/>
-            <Route path="/" element={<LogContainer />}/>
+            {/* <Route path="/" element={<LogContainer />}/> */}
             <Route path="addlog" element={<AddLog />}/>
         </Routes>
     </BrowserRouter>
