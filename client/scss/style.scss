@@ -202,6 +202,7 @@ body{
                 border-radius:0.5rem;
                 padding:0.5rem;
                 transition:$transition-time;
+                text-decoration:none;
                 &:hover{
                     background-color:$slate-500;
                     cursor:pointer;
@@ -211,7 +212,7 @@ body{
     }
 }
 
-.add-log{
+.add-log, .update-log{
     display:flex;
     flex-direction:column;
     justify-content:flex-start;

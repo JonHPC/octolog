@@ -1,4 +1,5 @@
 //server/routers/db.js
+const { json } = require('express');
 const express = require('express');
 const logController = require('../controllers/logController');
 const router = express.Router();

@@ -38,6 +38,7 @@ class LogContainer extends Component {
   deleteLog(e) {
     console.log('deleteLog e.target.id: ',e.target.id);
     e.preventDefault();
+    
     fetch(`/logs/${e.target.id}`, { method: 'DELETE' })
         //after DELETING, GET updated data
       .then(() => {

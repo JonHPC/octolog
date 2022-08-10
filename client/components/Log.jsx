@@ -1,5 +1,6 @@
 //client/components/Log.jsx
 import React, { useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 
 function Log(props) {
   const [log, setLog] = useState(props.log);
@@ -134,10 +135,7 @@ function Log(props) {
           >
             Delete
           </span>
-          <span 
-            id={log} 
-            className="log-edit-btn"
-            onClick={props.updateLog}>Edit</span>
+          <Link to='/updateLog' id={log} className="log-edit-btn">Edit</Link>
         </div>
         <span id="diveComments-span">
           Dive Comments: <span>{diveComments}</span>

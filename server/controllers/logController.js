@@ -139,8 +139,82 @@ logController.addLog = (req, res, next) => {
 
 logController.updateLog = (req, res, next) => {
   //this middleware updates a log
-  console.log('logController.updateLog');
-  next();
+  console.log('logController.updateLog req.body: ', req.body);
+  const {
+    log,
+    title,
+    createdOn,
+    createdBy,
+    diveSite,
+    maxDepth,
+    avgDepth,
+    timeIn,
+    timeOut,
+    temperature,
+    tankStart,
+    tankEnd,
+    buddies,
+    diveComments,
+  } = req.body;
+
+  const values = [
+    parseInt(log),
+    title,
+    createdOn,
+    createdBy,
+    diveSite,
+    parseFloat(maxDepth),
+    parseFloat(avgDepth),
+    timeIn,
+    timeOut,
+    parseFloat(temperature),
+    parseFloat(tankStart),
+    parseFloat(tankEnd),
+    buddies,
+    diveComments,
+  ];
+
+  console.log('logController.updateLog values: ', values);
+
+  const queryText = `
+  UPDATE logs
+   
+   SET 
+     log_id = $1,
+     user_id = $4,
+     title = $2,
+     created_on = $3,
+     dive_site = $5,
+     max_depth = $6,
+     avg_depth = $7,
+     time_in = $8,
+     time_out = $9,
+     temperature = $10,
+     tank_start = $11,
+     tank_end = $12,
+     buddies = $13,
+     dive_comments = $14
+   
+
+   WHERE log_id = $1
+
+   RETURNING *
+  ;`;
+
+  db.query(queryText, values)
+    .then((data) => {
+      next();
+    })
+    .catch((err, chars) => {
+      res.status(400);
+      return next(
+        createErr({
+          method: 'updateLog',
+          type: 'updating data',
+          err,
+        })
+      );
+    });
 };
 
 logController.deleteLog = (req, res, next) => {
