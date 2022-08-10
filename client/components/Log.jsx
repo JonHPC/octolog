@@ -92,13 +92,12 @@ function Log(props) {
             <span>Tank Start: {tankStart} bar</span>
             <span>Tank End: {tankEnd} bar</span>
             <span>Air Used: {litersPerMin} Lt/min</span>
-            
             <span>Buddies: {buddies}</span>
-            <span>Dive Comments: {diveComments}</span>
             <div className="log-edit-delete">
               <span id="log-delete-btn">Delete</span>
               <span id="log-edit-btn">Edit</span>
             </div>
+            <span>Dive Comments: {diveComments}</span>
           </div>
         </div>
     )

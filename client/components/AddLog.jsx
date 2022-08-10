@@ -1,37 +1,104 @@
 //client/components/AddLog.jsx
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Link, withRouter} from 'react-router-dom';
 
-function AddLog(props) {
+//custom hook for handling inputs
+const useInput = init => {
+    const [ value, setValue ] = useState(init);
+    const onChange = e => {
+      setValue(e.target.value);
+    };
+    // return the value with the onChange function instead of setValue function
+    return [ value, onChange ];
+  };
 
+const AddLog = (props) => {
+    const [log, setLog] = useInput('');
+    const [title, setTitle] = useInput('');
+    const [createdOn, setCreatedOn] = useInput('');
+    const [createdBy, setCreatedBy] = useState(1);
+    const [diveSite, setDiveSite] = useInput('');
+    const [maxDepth, setMaxDepth] = useInput('');
+    const [avgDepth, setAvgDepth] = useInput('');
+    const [timeIn, setTimeIn] = useInput('');
+    const [timeOut, setTimeOut] = useInput('');
+    const [temperature, setTemperature] = useInput('');
+    const [tankStart, setTankStart] = useInput('');
+    const [tankEnd, setTankEnd] = useInput('');
+    const [buddies, setBuddies] = useInput('');
+    const [diveComments, setDiveComments] = useInput('');
+
+    const saveLog = (e) => {
+        console.log('saveLog log: ', log)
+        e.preventDefault()
+        if(title === '' || log === ''){
+            alert('A log number and title are required!')
+        }else{
+            
+            const logObj = {
+                log,
+                title,
+                createdOn,
+                createdBy,
+                diveSite,
+                maxDepth,
+                avgDepth,
+                timeIn,
+                timeOut,
+                temperature,
+                tankStart,
+                tankEnd,
+                buddies,
+                diveComments
+            };
+            fetch('/logs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/JSON'
+                },
+                body: JSON.stringify(logObj)
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log('AddLog.jsx POST data: ', data)
+                alert('Log added!')
+            })
+            .catch(err =>{
+                console.log('AddLog.jsx POST ERROR: ', err)
+            })
+        }
+    }
 
     return(
         <div className="add-log">
             <h1>Add Log</h1>
-            <form className="form">
+            <form className="form" onSubmit={saveLog}>
+                <label htmlFor="log">Log#</label><br></br>
+                <input type="number" id="log" name="log" placeholder="99" onChange={setLog}/><br></br>
                 <label htmlFor="title">Title</label><br></br>
-                <input type="text" id="title" name="title" placeholder="Catalina Island"/><br></br>
-                <label htmlFor="created-on">Created On</label><br></br>
-                <input type="date" id="created-on" name="created-on" /><br></br>
-                <label htmlFor="dive-site">Dive Site</label><br></br>
-                <input type="text" id="dive-site" name="dive-site" placeholder="Casino Point"/><br></br>
-                <label htmlFor="max-depth">Max Depth (m)</label><br></br>
-                <input type="number" id="max-depth" name="max-depth" placeholder="15.0"/><br></br>
-                <label htmlFor="avg-depth">Average Depth (m)</label><br></br>
-                <input type="number" id="avg-depth" name="avg-depth" placeholder="10.5"/><br></br>
-                <label htmlFor="time-in">Time In</label><br></br>
-                <input type="time" id="time-in" name="time-in" /><br></br>
-                <label htmlFor="time-out">Time Out</label><br></br>
-                <input type="time" id="time-out" name="time-out" /><br></br>
+                <input type="text" id="title" name="title" placeholder="Catalina Island" onChange={setTitle}/><br></br>
+                <label htmlFor="createdOn">Created On</label><br></br>
+                <input type="date" id="createdOn" name="createdOn" onChange={setCreatedOn}/><br></br>
+                <label htmlFor="diveSite">Dive Site</label><br></br>
+                <input type="text" id="diveSite" name="diveSite" placeholder="Casino Point" onChange={setDiveSite}/><br></br>
+                <label htmlFor="maxDepth">Max Depth (m)</label><br></br>
+                <input type="number" id="maxDepth" name="maxDepth" placeholder="15.0" onChange={setMaxDepth}/><br></br>
+                <label htmlFor="avgDepth">Average Depth (m)</label><br></br>
+                <input type="number" id="avgDepth" name="avgDepth" placeholder="10.5" onChange={setAvgDepth}/><br></br>
+                <label htmlFor="timeIn">Time In</label><br></br>
+                <input type="time" id="timeIn" name="timeIn" onChange={setTimeIn}/><br></br>
+                <label htmlFor="timeOut">Time Out</label><br></br>
+                <input type="time" id="timeOut" name="timeOut" onChange={setTimeOut}/><br></br>
                 <label htmlFor="temperature">Temperature (°C)</label><br></br>
-                <input type="number" id="temperature" name="temperature" placeholder="19.0"/><br></br>
-                <label htmlFor="tank-start">Tank Start (bar)</label><br></br>
-                <input type="number" id="tank-start" name="tank-start" placeholder="200"/><br></br>
-                <label htmlFor="tank-end">Tank End (bar)</label><br></br>
-                <input type="number" id="tank-end" name="tank-end" placeholder="70"/><br></br>
+                <input type="number" id="temperature" name="temperature" placeholder="19.0" onChange={setTemperature}/><br></br>
+                <label htmlFor="tankStart">Tank Start (bar)</label><br></br>
+                <input type="number" id="tankStart" name="tankStart" placeholder="200" onChange={setTankStart}/><br></br>
+                <label htmlFor="tankEnd">Tank End (bar)</label><br></br>
+                <input type="number" id="tankEnd" name="tankEnd" placeholder="70" onChange={setTankEnd}/><br></br>
                 <label htmlFor="buddies">Buddies</label><br></br>
-                <input type="text" id="buddies" name="buddies" placeholder="Buddy"/><br></br>
-                <label htmlFor="comments">Comments</label><br></br>
-                <textarea id="comments" name="comments" rows="4" cols="50" placeholder="Visibility: ~7m. Tank Size:11.1L. Light current"></textarea><br></br>
+                <input type="text" id="buddies" name="buddies" placeholder="Buddy" onChange={setBuddies}/><br></br>
+                <label htmlFor="diveComments">Comments</label><br></br>
+                <textarea id="diveComments" name="diveComments" rows="4" cols="50" placeholder="Visibility: ~7m. Tank Size:11.1L. Light current" onChange={setDiveComments}></textarea><br></br>
                 <input className="submit-btn" type="submit" value="Submit"></input>
             </form>
         </div>

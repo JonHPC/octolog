@@ -85,7 +85,6 @@ class LogContainer extends Component {
 
         return(
             <div className='log-container'>
-                <button>Add log</button>
                 {logsToRender}
             </div>
         )

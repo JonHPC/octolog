@@ -41,8 +41,94 @@ logController.getLogs = (req, res, next) => {
 
 logController.addLog = (req, res, next) => {
   //this middleware adds a log to the database
-  console.log('logController.addLog');
-  next();
+  console.log('logController.addLog req.body: ', req.body);
+  const {
+    log,
+    title,
+    createdOn,
+    createdBy,
+    diveSite,
+    maxDepth,
+    avgDepth,
+    timeIn,
+    timeOut,
+    temperature,
+    tankStart,
+    tankEnd,
+    buddies,
+    diveComments,
+  } = req.body;
+
+  const values = [
+    parseInt(log),
+    title,
+    createdOn,
+    createdBy,
+    diveSite,
+    parseFloat(maxDepth),
+    parseFloat(avgDepth),
+    timeIn,
+    timeOut,
+    parseFloat(temperature),
+    parseFloat(tankStart),
+    parseFloat(tankEnd),
+    buddies,
+    diveComments,
+  ];
+
+  console.log('logController.addLog values: ', values)
+
+  const queryText = `
+  INSERT INTO logs (
+    log_id,
+    user_id,
+    title,
+    created_on,
+    dive_site,
+    max_depth,
+    avg_depth,
+    time_in,
+    time_out,
+    temperature,
+    tank_start,
+    tank_end,
+    buddies,
+    dive_comments
+   )
+   
+   VALUES (
+     $1,
+     $4,
+     $2,
+     $3,
+     $5,
+     $6,
+     $7,
+     $8,
+     $9,
+     $10,
+     $11,
+     $12,
+     $13,
+     $14
+   )
+  ;`;
+
+  db.query(queryText, values)
+  .then((data) => {
+    //console.log('addLog data: ', data);
+    next();
+  })
+  .catch((err, chars) => {
+    res.status(400);
+    return next(
+      createErr({
+        method: 'addLog',
+        type: 'adding data',
+        err,
+      })
+    );
+  });
 };
 
 logController.updateLog = (req, res, next) => {
