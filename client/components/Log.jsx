@@ -1,6 +1,7 @@
 //client/components/Log.jsx
 import React, { useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import UpdateLogForm from './UpdateLogForm.jsx';
 
 function Log(props) {
   const [log, setLog] = useState(props.log);
@@ -18,6 +19,7 @@ function Log(props) {
   const [tankSize, setTankSize] = useState(11.1);
   const [buddies, setBuddies] = useState(props.buddies);
   const [diveComments, setDiveComments] = useState(props.diveComments);
+  const [isEditing, setIsEditing] = useState(false);
 
   //convert the createdOn prop to a new Date object
   const date = new Date(createdOn);
@@ -80,11 +82,15 @@ function Log(props) {
     (maxDepth / 10 + 1)
   ).toFixed(1);
 
-
-
+    //toggles the UpdateLogIn form
+    const handleEdit = (e) => {
+      e.preventDefault()
+      isEditing ? setIsEditing(false) : setIsEditing(true);
+    }
 
   return (
     <div className="log">
+      {isEditing && <UpdateLogForm formData = {props}/>}
       <div className="log-header">
         <h3>
           Log#{log} - {title} - {processedDate}
@@ -135,7 +141,14 @@ function Log(props) {
           >
             Delete
           </span>
-          <Link to='/updateLog' id={log} className="log-edit-btn">Edit</Link>
+          <span
+              id={log}
+              className="log-edit-btn"
+              onClick={handleEdit}
+          >
+            Edit
+          </span>
+          {/* <Link to='/updateLog' id={log} className="log-edit-btn">Edit</Link> */}
         </div>
         <span id="diveComments-span">
           Dive Comments: <span>{diveComments}</span>

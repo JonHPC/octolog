@@ -13,7 +13,7 @@ const useInput = init => {
     return [ value, onChange ];
   };
 
-const AddLog = (props) => {
+const UpdateLog = (props) => {
     const [log, setLog] = useInput('');
     const [title, setTitle] = useInput('');
     const [createdOn, setCreatedOn] = useInput('');
@@ -114,4 +114,4 @@ const AddLog = (props) => {
     )
 }
 
-export default AddLog;
+export default UpdateLog;
