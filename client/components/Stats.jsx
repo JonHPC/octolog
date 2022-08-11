@@ -1,7 +1,7 @@
 //client/components/Stats.jsx
 import React, {useState, useEffect} from 'react';
 import Navbar from './Navbar.jsx';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area, PieChart, Pie, BarChart, Bar, Legend } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area, PieChart, Pie, BarChart, Bar, Legend, LabelList } from 'recharts';
 
 const data1 = [
     {name: 'Page A', uv: 300, pv: 240, amt: 2400},
@@ -134,55 +134,58 @@ const Stats = (props) => {
 //   }
 
 
+// colors
+//purple:#8884d8
+//green:#82ca9d
     return(
         <div className="stats-section">
             {/* <Navbar /> */}
             <div className="stats-container">
                 <div>
-                    <h3>Max/Avg depth (meters)</h3>
+                    <h3>Max/Avg depth</h3>
                     <AreaChart width={700} height={400} data={depthData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                         <defs>
                             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                            <stop offset="5%" stopColor="#a78bfa" stopOpacity={0}/>
+                            <stop offset="95%" stopColor="#a78bfa" stopOpacity={0.7}/>
                             </linearGradient>
                             <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
-                            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                            <stop offset="5%" stopColor="#4ade80" stopOpacity={0}/>
+                            <stop offset="95%" stopColor="#4ade80" stopOpacity={0.7}/>
                             </linearGradient>
                         </defs>
-                        <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
-                        <XAxis dataKey="log"/>
-                        <YAxis />
-                        <Tooltip />
+                        <CartesianGrid stroke="#64748b" strokeDasharray="3 3"/>
+                        <XAxis dataKey="log" stroke='#94a3b8'/>
+                        <YAxis label={{value:"Meters", angle:-90, stroke:'#e2e8f0'}} stroke='#94a3b8'/>
+                        {/* <Tooltip/> */}
                         <Legend />
-                        <Area type="monotone" dataKey="max" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-                        <Area type="monotone" dataKey="avg" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+                        <Area type="monotone" dataKey="max" stroke="#a78bfa" fillOpacity={1} fill="url(#colorUv)" />
+                        <Area type="monotone" dataKey="avg" stroke="#4ade80" fillOpacity={1} fill="url(#colorPv)" />
                     </AreaChart>
                 </div>
                 <div>
-                    <h3>Air Usage (Liters/minute)</h3>
+                    <h3>Air Usage</h3>
                     <BarChart width={700} height={400} data={airData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="log" />
-                        <YAxis />
-                        <Tooltip />
+                        {/* <CartesianGrid stroke="#64748b" strokeDasharray="3 3" /> */}
+                        <XAxis dataKey="log" stroke='#94a3b8'/>
+                        <YAxis label={{value:"Lt/min", angle:-90, stroke:'#e2e8f0'}} stroke='#94a3b8'/>
                         <Legend />
-                        <Bar dataKey="litersPerMin" fill="#8884d8" />
+                        <Bar dataKey="litersPerMin" fill="#d8bf73" fillOpacity={1}>
+                            <LabelList dataKey="litersPerMin" position="top" stroke="#e2e8f0"/>
+                        </Bar>
                         {/* <Bar dataKey="avg" fill="#82ca9d" /> */}
                     </BarChart>
                 </div>
                 <div>
-                    <h3>Dive Time (minutes)</h3>
+                    <h3>Dive Time</h3>
                     <LineChart width={700} height={400} data={timeData}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="log" />
-                        <YAxis />
-                        <Tooltip />
+                        <CartesianGrid stroke="#64748b" strokeDasharray="3 3" />
+                        <XAxis dataKey="log" stroke='#94a3b8'/>
+                        <YAxis  label={{value:"Minutes", angle:-90, stroke:'#e2e8f0'}}stroke='#94a3b8'/>
+                        {/* <Tooltip /> */}
                         <Legend />
-                        <Line type="monotone" dataKey="diveTime" stroke="#8884d8" />
-                        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+                        <Line type="monotone" dataKey="diveTime" stroke="#f87171" />
                     </LineChart>
                 </div>
             </div>

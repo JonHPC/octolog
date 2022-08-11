@@ -8,16 +8,20 @@ $slate-600:#475569;
 $slate-700:#334155;
 $slate-800:#1e293b;
 $slate-900:#0f172a;
-$green-text:rgb(7, 242, 7);
-$red-text:rgb(255, 49, 49);
+$green-400: #4ade80;
+$red-400:#f87171;
+$violet-400:#a78bfa;
+$amber-400:#fbbf24;
 $transition-time:0.2s;
+$amber-500:#d8bf73;
 
 
 body{
     background-color:$slate-900;
     color:$slate-300;
     font-family: 'Montserrat', sans-serif;
-    font-weight:300;
+    font-weight:400;
+    margin:0;
 }
 
 #root{
@@ -29,8 +33,10 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding-left:2rem;
-    padding-right:2rem;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    padding-left:3rem;
+    padding-right:3rem;
     ul {
         display:flex;
         align-items:center;
@@ -76,26 +82,79 @@ body{
 
 .login-page{
     display:flex;
-    flex-direction:column;
-    justify-content:space-evenly;
-    align-items:center;
-    gap:3rem;
-    .login-form{
-        background-color:$slate-800;
-        border-radius:1.5rem;
+    justify-content:space-between;
+    align-items:stretch;
+    height:100vh;
+    margin:0;
+    gap:0;
+    padding:0;
+    .login-left{
+        background-color:$slate-700;
+        flex-grow:1;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:600px;
+    }
+    .login-right{
+        background-color:$slate-900;
+        flex-grow:2;
         display:flex;
         flex-direction:column;
-        padding:3rem;
-        justify-content:space-evenly;
+        justify-content:center;
         align-items:center;
-        gap:1rem;
-        input{
-            border:none;
-            border-radius:0.25rem;
-            padding:0.25rem;
+        .login-form{
+            background-color:$slate-800;
+            border-radius:1.5rem;
+            display:flex;
+            flex-direction:column;
+            padding:3rem;
+            justify-content:space-evenly;
+            align-items:center;
+            gap:1rem;
+            input{
+                border:none;
+                border-radius:0.25rem;
+                padding:0.25rem;
+            }
+            .input-container{
+                input{
+                    padding:0.5rem;
+                    color:$slate-800;
+                    background-color:$slate-100;
+                }
+            }
+            .button-container{
+                input{
+                    background-color:$slate-300;
+                    color:$slate-800;
+                    border:none;
+                    padding:0.5rem 1rem;
+                    &:hover{
+                        background-color:$slate-400;
+                    }
+                }
+            }
         }
     }
+    
 }
+
+.login-success{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    gap:0.5rem;
+    color:$green-400;
+}
+
+.error{
+    color:$red-400;
+}
+
+
 
 .input-container{
     display:flex;
@@ -115,12 +174,21 @@ body{
         font-size:0.75rem;
     }
 }
+main{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:stretch;
+}
 .log-container{
     display:flex;
     flex-direction:column;
     justify-content:space-evenly;
     align-items:center;
     gap:0.5rem;
+    padding-left:10rem;
+    padding-right:10rem;
+    min-width:800px;
 }
 
 #createdBy-span{
@@ -132,19 +200,19 @@ body{
 #timeIn-span{
     grid-area: timeIn;
     span{
-        color:$green-text;
+        color:$slate-200;
     }
 }
 #timeOut-span{
     grid-area:timeOut;
     span{
-        color:$red-text;
+        color:$slate-200;
     }
 }
 #diveTime-span{
     grid-area:diveTime;
     span{
-        color:$green-text;
+        color:$red-400;
     }
 }
 #diveSite-span{
@@ -156,37 +224,37 @@ body{
 #maxDepth-span{
     grid-area:maxDepth;
     span{
-        color:$green-text;
+        color:$violet-400;
     }
 }
 #avgDepth-span{
     grid-area:avgDepth;
     span{
-        color:$green-text;
+        color:$green-400;
     }
 }
 #temp-span{
     grid-area:temp;
     span{
-        color:$green-text;
+        color:$slate-200;
     }
 }
 #tankStart-span{
     grid-area:tankStart;
     span{
-        color:$green-text;
+        color:$slate-200;
     }
 }
 #tankEnd-span{
     grid-area:tankEnd;
     span{
-        color:$red-text;
+        color:$slate-200;
     }
 }
 #airUsed-span{
     grid-area:airUsed;
     span{
-        color:$green-text;
+        color:$amber-400;
     }
 }
 #buddies-span{
@@ -212,7 +280,7 @@ body{
     width:90%;
     margin: 1rem;
     .log-data{
-        color:$slate-400;
+        color:$slate-500;
         display:grid;
         grid-template-columns:repeat(4, 1fr);
         grid-template-rows: repeat(4, 1fr);
