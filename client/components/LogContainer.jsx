@@ -7,8 +7,7 @@ class LogContainer extends Component {
     super(props);
     this.state = {
       fetchedLogs: false,
-      logs: [],
-      refresher: false
+      logs: []
     };
     this.deleteLog = this.deleteLog.bind(this)
     this.updateLog = this.updateLog.bind(this)

@@ -7,7 +7,7 @@ import NavBar from './components/Navbar.jsx';
 import LogContainer from './components/LogContainer.jsx';
 import AddLog from './components/AddLog.jsx';
 import UpdateLog from './components/UpdateLog.jsx';
-import Stats from './components/Stats.jsx';
+import StatCalc from './components/StatCalc.jsx';
 import Login from './components/Login.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,7 +19,7 @@ root.render(
             {/* <Route path="/" element={<LogContainer />}/>  */}
             <Route path="addlog" element={<AddLog />}/>
             <Route path="updateLog" element={<UpdateLog />}/>
-            <Route path="stats" element={<Stats />}/>
+            <Route path="stats" element={<StatCalc />}/>
             <Route path="login" element={<Login />} />
         </Routes>
     </BrowserRouter>

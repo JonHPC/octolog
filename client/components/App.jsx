@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import LogContainer from './LogContainer.jsx';
+import StatCalc from './StatCalc.jsx';
 import '../scss/style.scss';
 
 function App() {
