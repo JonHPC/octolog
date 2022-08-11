@@ -78,7 +78,7 @@ const AddLog = (props) => {
 
 
     return(
-        <div className>
+        <div>
             <Navbar/>
             <div className="add-log">
                 <h1>Add Log</h1>
@@ -108,7 +108,7 @@ const AddLog = (props) => {
                     <label htmlFor="buddies">Buddies</label><br></br>
                     <input type="text" id="buddies" name="buddies" placeholder="Buddy" onChange={setBuddies}/><br></br>
                     <label htmlFor="diveComments">Comments</label><br></br>
-                    <textarea id="diveComments" name="diveComments" rows="4" cols="50" placeholder="Visibility: ~7m. Tank Size:11.1L. Light current" onChange={setDiveComments}></textarea><br></br>
+                    <textarea id="diveComments" name="diveComments" rows="4" cols="50" placeholder="How was it?" onChange={setDiveComments}></textarea><br></br>
                     <input className="submit-btn" type="submit" value="Submit"></input>
                 </form>
             </div>

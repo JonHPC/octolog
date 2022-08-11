@@ -7,6 +7,7 @@ import NavBar from './components/Navbar.jsx';
 import LogContainer from './components/LogContainer.jsx';
 import AddLog from './components/AddLog.jsx';
 import UpdateLog from './components/UpdateLog.jsx';
+import Stats from './components/Stats.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -17,6 +18,7 @@ root.render(
             {/* <Route path="/" element={<LogContainer />}/>  */}
             <Route path="addlog" element={<AddLog />}/>
             <Route path="updateLog" element={<UpdateLog />}/>
+            <Route path="stats" element={<Stats />}/>
         </Routes>
     </BrowserRouter>
 );

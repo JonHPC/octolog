@@ -242,6 +242,13 @@ body{
     }
 }
 
+.stats-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+}
+
 /* Chrome, Safari, Edge, Opera remove arrows from number input*/
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
