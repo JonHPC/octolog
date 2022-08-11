@@ -66,6 +66,7 @@ class LogContainer extends Component {
   updateLog(e){
     console.log('updateLog e.target.id: ', e.target.id)
     e.preventDefault();
+
   }
 
   render() {

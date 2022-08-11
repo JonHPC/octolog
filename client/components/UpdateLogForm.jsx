@@ -120,7 +120,7 @@ const UpdateLogForm = (props) => {
                     <input type="text" id="buddies" name="buddies" placeholder="Buddy" onChange={setBuddies}/>
                     <label htmlFor="diveComments">Comments</label>
                     <input type="text" id="diveComments" name="diveComments" placeholder="Lots of fish!" onChange={setDiveComments}></input>
-                    <input id="save-btn" className="submit-btn" type="submit" value="Save"></input>
+                    <input id="save-btn" className="submit-btn" type="submit" value="Save" onClick={props.updateLog}></input>
                 </form>
             </div>
         </div>

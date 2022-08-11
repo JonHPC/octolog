@@ -90,7 +90,8 @@ function Log(props) {
 
   return (
     <div className="log">
-      {isEditing && <UpdateLogForm formData = {props}/>}
+      {/* {isEditing && <UpdateLogForm formData = {props} updateLog={props.updateLog}/>} */}
+      {isEditing && <UpdateLogForm />}
       <div className="log-header">
         <h3>
           Log#{log} - {title} - {processedDate}
@@ -145,6 +146,7 @@ function Log(props) {
               id={log}
               className="log-edit-btn"
               onClick={handleEdit}
+              // onClick={props.updateLog}
           >
             Edit
           </span>

@@ -143,7 +143,7 @@ const Stats = (props) => {
             <div className="stats-container">
                 <div>
                     <h3>Max/Avg depth</h3>
-                    <AreaChart width={700} height={400} data={depthData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                    <AreaChart width={800} height={400} data={depthData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                         <defs>
                             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#a78bfa" stopOpacity={0}/>
@@ -165,7 +165,7 @@ const Stats = (props) => {
                 </div>
                 <div>
                     <h3>Air Usage</h3>
-                    <BarChart width={700} height={400} data={airData}>
+                    <BarChart width={800} height={400} data={airData}>
                         {/* <CartesianGrid stroke="#64748b" strokeDasharray="3 3" /> */}
                         <XAxis dataKey="log" stroke='#94a3b8'/>
                         <YAxis label={{value:"Lt/min", angle:-90, stroke:'#e2e8f0'}} stroke='#94a3b8'/>
@@ -178,7 +178,7 @@ const Stats = (props) => {
                 </div>
                 <div>
                     <h3>Dive Time</h3>
-                    <LineChart width={700} height={400} data={timeData}
+                    <LineChart width={800} height={400} data={timeData}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid stroke="#64748b" strokeDasharray="3 3" />
                         <XAxis dataKey="log" stroke='#94a3b8'/>
