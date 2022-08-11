@@ -5,6 +5,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const PORT = 3000;
 const dbRouter = require('./routers/db');
+const usersRouter = require('./routers/users')
 
 //PARSE BODY ON EVERY REQUEST
 app.use(express.json());
@@ -22,8 +23,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/logs', dbRouter);
+app.use('/login', usersRouter);
 
-app.use('/login', dbRouter)
 //GLOBAL ERROR HANDLER
 // catch-all route handler
 app.use((req, res) => res.status(404).send('404: Page not found'));
