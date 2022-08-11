@@ -11,7 +11,7 @@ function Navbar() {
                 <Link to='/addlog' id="addLog-link">Add Log</Link>
                 <Link to='/stats' className="nav-btn" id="stats-link">Stats</Link>
                 <Link to='/' className="nav-btn" id="map-link">Map</Link>
-                <Link to='/' className="nav-btn" id="profile-link">Profile</Link>
+                <Link to='/login' className="nav-btn" id="login-link">Login</Link>
             </ul>
         </div>
     )
