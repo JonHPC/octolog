@@ -120,7 +120,10 @@ class LogContainer extends Component {
       );
     }
 
-    return <div className="log-container">{logsToRender}</div>;
+    return (
+    <div className="log-container">
+      {logsToRender}
+    </div>);
   }
 }
 

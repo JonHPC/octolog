@@ -53,6 +53,10 @@ module.exports = env => ({
         '/logs': 'http://localhost:3000'
     }
   },
+  performance: {
+    maxEntrypointSize: 5120000,
+    maxAssetSize:5120000
+  },
   plugins: [
     new HtmlWebpackPlugin({
         title: 'Development',
